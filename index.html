@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <script>
+        function computerPlay() {
+            // randomly picks a string "rock", "paper" or "scissors" from a list and returns it as computer selection
+            randomIndex = Math.floor(Math.random() * 3); //picks random integer from 0-2
+            return ["rock", "paper", "scissors"][randomIndex];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            // compares playerSelection vs computerSelection and determines who won, declares winner with console statement
+            // if playerSelection is the same as computerSelection, return "It's a Draw!"
+            if (playerSelection == computerSelection) {
+                return "It's a DRAW!";
+            } else if (playerSelection == "rock" && computerSelection == "scissors") { // if p chose rock and c chose scissors, declare p winner
+                return "You WIN! Rock beats Scissors";
+            } else if (playerSelection == "paper" && computerSelection == "rock") { // if p chose paper and c chose rock, declare p winner
+                return "You WIN! Paper beats Rock";
+            } else if (playerSelection == "scissors" && computerSelection == "paper") {// if p chose scissors and c chose paper, declare p winner
+                return "You WIN! Scissors beats Paper";
+            } else { // else declare c winner
+                return "You LOSE! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats "
+                       + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+            }
+        }
+            
+        function playGame() {
+            // plays 5 rounds of the game, keeping score and declaring winner at end
+            // initialize score keeping variables for player and computer
+            let playerScore = 0;
+            let computerScore = 0;
+            let validResponse = false; // initialize variable for a valid response and set to false
+            let playerSelection;
+
+            while (validResponse == false) {
+                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
+                playerSelection = prompt("Choose a hand: ").toLowerCase();
+                // check if valid selection
+                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+                    validResponse = true;
+                } else {
+                console.log("Not valid, try again");
+                }
+            }
+
+            let result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
+
+            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
+                playerScore += 1;
+            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
+                computerScore += 1;
+            }
+
+            console.log(result);
+            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
+            
+            // repeat 4 more times
+            validResponse = false; // initialize variable for a valid response and set to false
+
+            while (validResponse == false) {
+                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
+                playerSelection = prompt("Choose a hand: ").toLowerCase();
+                // check if valid selection
+                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+                    validResponse = true;
+                } else {
+                console.log("Not valid, try again");
+                }
+            }
+
+            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
+
+            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
+                playerScore += 1;
+            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
+                computerScore += 1;
+            }
+            
+            console.log(result);
+            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
+
+            validResponse = false; // initialize variable for a valid response and set to false
+
+            while (validResponse == false) {
+                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
+                playerSelection = prompt("Choose a hand: ").toLowerCase();
+                // check if valid selection
+                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+                    validResponse = true;
+                } else {
+                console.log("Not valid, try again");
+                }
+            }
+
+            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
+
+            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
+                playerScore += 1;
+            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
+                computerScore += 1;
+            }
+            
+            console.log(result);
+            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
+
+            validResponse = false; // initialize variable for a valid response and set to false
+
+            while (validResponse == false) {
+                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
+                playerSelection = prompt("Choose a hand: ").toLowerCase();
+                // check if valid selection
+                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+                    validResponse = true;
+                } else {
+                console.log("Not valid, try again");
+                }
+            }
+
+            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
+
+            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
+                playerScore += 1;
+            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
+                computerScore += 1;
+            }
+            
+            console.log(result);
+            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
+
+            validResponse = false; // initialize variable for a valid response and set to false
+
+            while (validResponse == false) {
+                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
+                playerSelection = prompt("Choose a hand: ").toLowerCase();
+                // check if valid selection
+                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+                    validResponse = true;
+                } else {
+                console.log("Not valid, try again");
+                }
+            }
+
+            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
+
+            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
+                playerScore += 1;
+            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
+                computerScore += 1;
+            }
+            
+            console.log(result);
+            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
+
+            // see who has highest score at end and declare overall winner
+            if (playerScore > computerScore) {
+                console.log("CONGRATULATIONS! You beat the computer " + playerScore + " to " + computerScore + "!");
+            } else if (playerScore < computerScore) {
+                console.log("SORRY! The computer beat you " + computerScore + " to " + playerScore + "!");
+            } else {
+                console.log("It was a DRAW.");
+            }
+        }
+    </script>
+</body>
+</html>
