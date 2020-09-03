@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rock Paper Scissors</title>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1 id="title">Rock. Paper. Scissors.</h1>
+    <div id="container"></div>
     <script>
         function computerPlay() {
             // randomly picks a string "rock", "paper" or "scissors" from a list and returns it as computer selection
@@ -15,8 +19,9 @@
         function playRound(playerSelection, computerSelection) {
             // compares playerSelection vs computerSelection and determines who won, declares winner with console statement
             // if playerSelection is the same as computerSelection, return "It's a Draw!"
+            console.log(playerSelection, computerSelection);
             if (playerSelection == computerSelection) {
-                return "It's a DRAW!";
+                return "The last round was a draw.";
             } else if (playerSelection == "rock" && computerSelection == "scissors") { // if p chose rock and c chose scissors, declare p winner
                 return "You WIN! Rock beats Scissors";
             } else if (playerSelection == "paper" && computerSelection == "rock") { // if p chose paper and c chose rock, declare p winner
@@ -58,103 +63,7 @@
 
             console.log(result);
             console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
-            
-            // repeat 4 more times
-            validResponse = false; // initialize variable for a valid response and set to false
-
-            while (validResponse == false) {
-                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
-                playerSelection = prompt("Choose a hand: ").toLowerCase();
-                // check if valid selection
-                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-                    validResponse = true;
-                } else {
-                console.log("Not valid, try again");
-                }
-            }
-
-            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
-
-            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
-                playerScore += 1;
-            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
-                computerScore += 1;
-            }
-            
-            console.log(result);
-            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
-
-            validResponse = false; // initialize variable for a valid response and set to false
-
-            while (validResponse == false) {
-                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
-                playerSelection = prompt("Choose a hand: ").toLowerCase();
-                // check if valid selection
-                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-                    validResponse = true;
-                } else {
-                console.log("Not valid, try again");
-                }
-            }
-
-            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
-
-            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
-                playerScore += 1;
-            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
-                computerScore += 1;
-            }
-            
-            console.log(result);
-            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
-
-            validResponse = false; // initialize variable for a valid response and set to false
-
-            while (validResponse == false) {
-                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
-                playerSelection = prompt("Choose a hand: ").toLowerCase();
-                // check if valid selection
-                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-                    validResponse = true;
-                } else {
-                console.log("Not valid, try again");
-                }
-            }
-
-            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
-
-            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
-                playerScore += 1;
-            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
-                computerScore += 1;
-            }
-            
-            console.log(result);
-            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
-
-            validResponse = false; // initialize variable for a valid response and set to false
-
-            while (validResponse == false) {
-                // prompt player for what hand to play, convert to lowercase and store in variable playerSelection
-                playerSelection = prompt("Choose a hand: ").toLowerCase();
-                // check if valid selection
-                if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-                    validResponse = true;
-                } else {
-                console.log("Not valid, try again");
-                }
-            }
-
-            result = playRound(playerSelection, computerPlay()); // {call playRound function, store return in variable result
-
-            if (result.includes("WIN")) { // {if result is "win", add 1 to player score
-                playerScore += 1;
-            } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
-                computerScore += 1;
-            }
-            
-            console.log(result);
-            console.log("Score: You - " + playerScore + " Computer - " + computerScore); // notify result and current rounds won
+          
 
             // see who has highest score at end and declare overall winner
             if (playerScore > computerScore) {
@@ -162,9 +71,122 @@
             } else if (playerScore < computerScore) {
                 console.log("SORRY! The computer beat you " + computerScore + " to " + playerScore + "!");
             } else {
-                console.log("It was a DRAW.");
+                console.log("The last round was a draw.");
             }
         }
+        const rockBtn = document.createElement('button');
+        rockBtn.id = 'rock';
+        rockBtn.textContent = "Rock";
+        const paperBtn = document.createElement('button');
+        paperBtn.id = 'paper';
+        paperBtn.textContent = "Paper";
+        const scissorsBtn = document.createElement('button');
+        scissorsBtn.id = 'scissors';
+        scissorsBtn.textContent = 'Scissors'
+        
+        const container = document.querySelector('#container');
+        const playBtn = document.createElement('button');
+        const roundDisplay = document.createElement('div');
+        roundDisplay.setAttribute('id', 'roundDisplay')
+        const scoreDisplay = document.createElement('div');
+        const gameOver = document.createElement('h2');
+        playBtn.setAttribute('id', 'playBtn')
+        playBtn.textContent = "Play Rock Paper Scissors!";
+        container.appendChild(playBtn);
+        const countDisplay = document.createElement('div');
+        countDisplay.setAttribute('style', 'font-size: 16px');
+        
+        let playerScore = 0;
+        let computerScore = 0;
+        let roundCount;
+        
+     
+        function clickRound() {
+            let roundResult = ''
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    let result = playRound(button.id, computerPlay());
+                    if (result.includes("WIN")) { // {if result is "win", add 1 to player score
+                        playerScore += 1;
+                    } else if (result.includes("LOSE")) { // if result is "lose", add 1 to computer score
+                        computerScore += 1;
+                    }
+                    roundCount -= 1;
+                    countDisplay.textContent = 'Rounds left: ' + roundCount;
+                    roundDisplay.textContent =  result; // changes text of div to result of round
+                    scoreDisplay.textContent = "Score: You - " + playerScore + " Computer - " + computerScore;
+                    container.appendChild(roundDisplay);  
+                    container.appendChild(scoreDisplay);
+                    if (roundCount == 0) {
+                        if (playerScore > computerScore) {
+                            gameOver.textContent = "CONGRATULATIONS! You beat the computer " + playerScore + " to " + computerScore + "!";
+                            container.removeChild(rockBtn);
+                            container.removeChild(paperBtn);
+                            container.removeChild(scissorsBtn);
+                            container.removeChild(scoreDisplay);
+                            container.appendChild(gameOver);
+                            playBtn.textContent = "Play Again!";
+                            container.appendChild(playBtn);
+                        } else if (playerScore < computerScore) {
+                            gameOver.textContent = "SORRY! The computer beat you " + computerScore + " to " + playerScore + "!";
+                            container.removeChild(rockBtn);
+                            container.removeChild(paperBtn);
+                            container.removeChild(scissorsBtn);
+                            container.removeChild(scoreDisplay)
+                            container.appendChild(gameOver);
+                            playBtn.textContent = "Play Again!";
+                            container.appendChild(playBtn);
+                        } else {
+                            gameOver.textContent = "The game was a DRAW.";
+                            container.removeChild(rockBtn);
+                            container.removeChild(paperBtn);
+                            container.removeChild(scissorsBtn);
+                            container.removeChild(scoreDisplay)
+                            container.appendChild(gameOver);
+                            playBtn.textContent = "Play Again!";
+                            container.appendChild(playBtn);
+                        }
+                    }      
+                });
+            });
+        };
+ 
+        function clickPlay() {
+            container.setAttribute("style", "top: 100px");
+            playerScore = 0;
+            computerScore = 0;
+            roundCount = 5;
+            countDisplay.textContent = 'Rounds left: ' + roundCount;
+            if (playBtn.textContent == "Play Again!") {
+                container.removeChild(gameOver);
+                container.removeChild(roundDisplay);
+                container.removeChild(playBtn);
+                container.appendChild(rockBtn);
+                container.appendChild(paperBtn);
+                container.appendChild(scissorsBtn);
+            } else {
+                container.removeChild(playBtn);
+                container.appendChild(countDisplay);
+                container.appendChild(rockBtn);
+                container.appendChild(paperBtn);
+                container.appendChild(scissorsBtn);
+                buttons = document.querySelectorAll('button');
+                clickRound(); 
+            }
+            
+        }
+
+        playBtn.addEventListener('click', clickPlay);
+
+        
+        
+        
+        
+
+       
+
+
+
     </script>
 </body>
 </html>
